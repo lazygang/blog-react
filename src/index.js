@@ -5,6 +5,9 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import store from "./reducer/index";
 import { Provider } from "react-redux";
+import moment from 'moment';
+import 'moment/locale/zh-cn';
+moment.locale('zh-cn');
 
 ReactDOM.render(
   <React.StrictMode>

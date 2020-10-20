@@ -7,7 +7,7 @@ import {
   Redirect,
 } from "react-router-dom";
 import Login from "./index/Login";
-import Index from "./views/Index";
+import Index from "./index/Index";
 
 function App() {
   return (
