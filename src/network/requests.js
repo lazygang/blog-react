@@ -25,7 +25,8 @@ axios.defaults.retryDelay = 5000;
 // }
 
 const Axios = axios.create({
-  baseURL: "http://localhost:5000/",
+  baseURL: "http://106.55.12.105:5000/",
+  // baseURL: "http://localhost:5000/",
   // 下面两个属性，用来设置，请求失败或者超时，自动重新请求的次数和间隙时间
   retry: 4, // 请求次数
   retryInterval: 3000, // 请求间隙

@@ -13,7 +13,8 @@ class TarBar_ extends Component {
           position: "fixed",
           width: "24rem",
           bottom: 0,
-          boxShadow:'0 0 0 0 green, 0 -0.05rem 0.5rem 0rem , 0 0 0 0 red, 0 0 0 0 yellow'
+          boxShadow:'0 0 0 0 green, 0 -0.05rem 0.5rem 0rem , 0 0 0 0 red, 0 0 0 0 yellow',
+          zIndex:'100'
         }}
       >
         <TabBar

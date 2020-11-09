@@ -3,7 +3,8 @@ import { WhiteSpace, List, InputItem, Toast, Button } from "antd-mobile";
 import { checkName_api, checkNickName_api } from "../../network/login";
 import deBounce from "../../tool/deBounce";
 import { register_api, login_api } from "../../network/login";
-class LoginTab extends Component {
+import { connect } from "react-redux";
+class RegisterTab extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -192,6 +193,14 @@ class LoginTab extends Component {
                     "userData",
                     JSON.stringify(res.data.data)
                   );
+                  this.props.dispatch({
+                    type: "login",
+                    payload: null,
+                  });
+                  this.props.dispatch({
+                    type: "updateUser",
+                    payload: res.data.data,
+                  });
                   this.props.history.push("/index/plaza");
                   Toast.info("登录成功", 3, () => {}, false);
                 } else {
@@ -307,4 +316,11 @@ class LoginTab extends Component {
     );
   }
 }
-export default LoginTab;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    // title: state.title,
+    // islogin:state.islogin
+  };
+};
+export default connect(mapStateToProps)(RegisterTab);
+

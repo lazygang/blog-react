@@ -9,26 +9,19 @@ class Prose extends Component {
   }
   render() {
     return (
-      <div     className={
-        this.props.location.pathname === "/index/prose"
-          ? "animate__animated animate__fadeIn "
-          : ""
-      }>
-        <InputItem clear placeholder="广场">
-          广场
-        </InputItem>
-        <p> {this.props.title.title}</p>
-        <Button
-        >
-          test
-        </Button>
+      <div
+        className={
+          this.props.location.pathname === "/index/prose"
+            ? "animate__animated animate__fadeIn "
+            : ""
+        }
+      >
+        <Button>精选</Button>
       </div>
     );
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  return {
-    title: state.title,
-  };
+  return {};
 };
 export default connect(mapStateToProps)(Prose);

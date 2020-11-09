@@ -7,6 +7,7 @@ import {
   Checkbox,
   Button,
 } from "antd-mobile";
+import { connect } from "react-redux";
 import { login_api } from "../../network/login";
 
 class LoginTab extends Component {
@@ -53,7 +54,7 @@ class LoginTab extends Component {
       window.localStorage.setItem("passWord", "");
     }
     let tip = Toast.loading("登陆中", 5, () => {}, true);
-    login_api(data).then((res) => {
+    login_api(data).then(async (res) => {
       Toast.hide();
       if (res && res.data) {
         if (res.data.success) {
@@ -62,8 +63,16 @@ class LoginTab extends Component {
             "userData",
             JSON.stringify(res.data.data)
           );
+          this.props.dispatch({
+            type: "login",
+            payload: null,
+          });
+          await this.props.dispatch({
+            type: "updateUser",
+            payload: res.data.data,
+          });
           this.props.history.push("/index/plaza");
-          Toast.info('登录成功', 3, () => {}, false);
+          Toast.info("登录成功", 3, () => {}, false);
         } else {
           Toast.info(res.data.msg, 3, () => {}, false);
         }
@@ -160,8 +169,23 @@ class LoginTab extends Component {
         >
           登录
         </Button>
+        <WhiteSpace size="xl" />
+        <Button
+          type="warning"
+          onClick={() => {
+            this.props.history.goBack();
+          }}
+        >
+          返回
+        </Button>
       </div>
     );
   }
 }
-export default LoginTab;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    // title: state.title,
+    // islogin:state.islogin
+  };
+};
+export default connect(mapStateToProps)(LoginTab);

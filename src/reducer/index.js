@@ -3,12 +3,14 @@ import thunk from "redux-thunk";
 //==========================================================================Reducer========================================
 import counterReducer from "./counterReducer";
 import titleReducer from "./titleReducer";
-import isLogin from "./isLogin";
+import isLoginReducer from "./isLoginReducer";
+import userReducer from "./userReducer";
 
 const rootReducer = combineReducers({
   count: counterReducer,
   title: titleReducer,
-  islogin: isLogin,
+  isLogin: isLoginReducer,
+  user: userReducer,
 });
 
 const store = createStore(rootReducer, compose(applyMiddleware(...[thunk])));

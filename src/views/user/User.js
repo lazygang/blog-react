@@ -1,12 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { InputItem } from "antd-mobile";
+import { Button, InputItem } from "antd-mobile";
+import UnLogin from "./child/UnLogin";
+import Login from "./child/Login";
 class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLogin: false,
     };
+  }
+  componentDidMount() {
+
   }
   render() {
     return (
@@ -17,73 +22,24 @@ class User extends Component {
             : ""
         }
       >
-        <div
-          style={{
-            height: "24rem",
-            backgroundColor: "red",
-            paddingTop: "6rem",
+        {this.props.isLogin ? (
+         <Login history={this.props.history}></Login>
+        ) : (
+          <UnLogin history={this.props.history}></UnLogin>
+        )}
+        <Button
+          onClick={() => {
+ 
           }}
-        >
-          {this.state.isLogin ? (
-            <div> </div>
-          ) : (
-            <div
-              style={{
-                margin: "0 auto",
-                width: "18rem",
-                height: "12rem",
-                backgroundColor: "blue",
-                paddingTop: "1.5rem",
-              }}
-            >
-              <div
-                style={{
-                  width: "6rem",
-                  border: "0.1rem solid #4BD0D0",
-                  borderRadius: "15rem",
-                  padding: "0.1rem",
-                  margin: "0 auto",
-                }}
-                onClick={() => {
-                  this.props.history.push("/login");
-                }}
-              >
-                <svg
-                  class="icon"
-                  aria-hidden="true"
-                  style={{
-                    width: "6rem",
-                    height: "5.5rem",
-                    paddingRight: "0.5rem",
-                  }}
-                >
-                  <use xlinkHref="#iconqie-01"></use>
-                </svg>
-              </div>
-              <div
-                style={{
-                  margin: "1rem auto",
-                  width: "10rem",
-                  textAlign: "center",
-                  fontSize: "1.5rem",
-                }}
-                onClick={() => {
-                  this.props.history.push("/login");
-                }}
-              >
-                登录/注册
-              </div>
-            </div>
-          )}
-        </div>
+        >用户界面测试按钮暂时无作用</Button>
       </div>
     );
   }
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    title: state.title,
-    user: state.user,
+    user: state.user.user,
+    isLogin: state.isLogin.isLogin,
   };
 };
 export default connect(mapStateToProps)(User);

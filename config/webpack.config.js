@@ -38,7 +38,7 @@ const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== "false";
 const isExtendingEslintConfig = process.env.EXTEND_ESLINT === "true";
 
 const imageInlineSizeLimit = parseInt(
-  process.env.IMAGE_INLINE_SIZE_LIMIT || "10000"
+  process.env.IMAGE_INLINE_SIZE_LIMIT || "100000"
 );
 
 // Check if TypeScript is setup
@@ -357,8 +357,10 @@ module.exports = function (webpackEnv) {
             // "url" loader works like "file" loader except that it embeds assets
             // smaller than specified limit in bytes as data URLs to avoid requests.
             // A missing `test` is equivalent to a match.
+            // 自更改
             {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+                 // 自更改
               loader: require.resolve("url-loader"),
               options: {
                 limit: imageInlineSizeLimit,
